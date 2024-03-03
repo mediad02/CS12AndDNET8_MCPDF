@@ -5,6 +5,14 @@ namespace Northwind.EntityModels.Sqlite;
 
 public static class NorthwindContextExtensions
 {
+	/// <summary>
+	/// Adds NorthwindContext to the specified IServiceCollection. Uses the Sqlite database provider.
+	/// </summary>
+	/// <param name="services">The service collection.</param>
+	/// <param name="relativePath">Default is "..\.."</param>
+	/// <param name="databaseName">Default is "Northwind.db"</param>
+	/// <returns>An IServiceCollection that can be used to add more services.</returns>
+	/// <exception cref="FileNotFoundException"></exception>
 	public static IServiceCollection AddNorthwindContext(this IServiceCollection services, string relativePath = @"..\..", string databaseName = "Northwind.db")
 	{
 		string path = Path.Combine(relativePath, databaseName);
