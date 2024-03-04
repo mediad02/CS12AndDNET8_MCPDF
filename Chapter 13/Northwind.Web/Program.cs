@@ -10,7 +10,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => $"Environment is {app.Environment.EnvironmentName}");
 
 #endregion
 
