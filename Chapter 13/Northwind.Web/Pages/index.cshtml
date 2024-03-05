@@ -1,4 +1,13 @@
 ﻿@page
+@functions
+{
+    public string? DayName { get; set; }
+
+    public void OnGet()
+    {
+        DayName = DateTime.Now.ToString("dddd");
+    }
+}
 <!doctype html>
 <html lang="en">
 
@@ -18,7 +27,7 @@
             <h1 class="display-3">Welcome to Northwind B2B</h1>
             <p class="lead">We supply products to our customers.</p>
             <hr />
-            <p>Our customers include restaurants, hotels, and cruise lines.</p>
+            <p>It's @DayName! Our customers include restaurants, hotels, and cruise lines.</p>
             <p>
                 <a class="btn btn-primary" href="https://www.asp.net/">Learn more</a>
             </p>
