@@ -5,7 +5,6 @@ using Northwind.EntityModels.Sqlite; // To use AddNorthwindContext method.
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
-
 builder.Services.AddNorthwindContext();
 
 var app = builder.Build();
@@ -18,6 +17,30 @@ if (!app.Environment.IsDevelopment())
 {
 	app.UseHsts();
 }
+
+//Implementing an anonymous inline delegate as middleware to intercept HTTP request and responses.
+app.Use(async (context, next) =>
+{
+	RouteEndpoint? rep = context.GetEndpoint() as RouteEndpoint;
+
+	if (rep is not null)
+	{
+		WriteLine($"Endpoint name: {rep.DisplayName}");
+		WriteLine($"Endpoint route pattern: {rep.RoutePattern.RawText}");
+	}
+
+	if (context.Request.Path == "/bonjour")
+	{
+		// In the case of a match on URL path, this becomes a terminating delegate that returns so does not call the next delegate.
+		await context.Response.WriteAsync("Bonjour Monde!");
+		return;
+	}
+
+	// We could modify the request before calling the next delegate.
+	await next();
+
+	// We could modify the response after calling the next delegate.
+});
 
 app.UseHttpsRedirection();
 
