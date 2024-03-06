@@ -10,4 +10,9 @@
     <Using Include="System.Console" Static="true" />
   </ItemGroup>
 
+  <!-- Change Sqlite to SqlServer if you prefer. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\Chapter 12\Northwind.DataContext.Sqlite\Northwind.DataContext.Sqlite.csproj" />
+  </ItemGroup>
+
 </Project>

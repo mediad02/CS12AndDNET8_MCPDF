@@ -1,8 +1,12 @@
+using Northwind.EntityModels.Sqlite; // To use AddNorthwindContext method.
+
 #region Configure the web server host and services.
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+
+builder.Services.AddNorthwindContext();
 
 var app = builder.Build();
 
